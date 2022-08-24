@@ -1,0 +1,6 @@
+tasks:
+    - init: sudo -E "PATH=$PATH" make setup
+      command: |
+          clear &&
+          git remote -v &&
+          echo "cd to source/hwN and try make help"

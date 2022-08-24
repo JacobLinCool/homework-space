@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "ms-vscode.cpptools",
+        "bierner.emojisense",
+        "mhutchie.git-graph",
+        "eamodio.gitlens",
+        "ms-vsliveshare.vsliveshare",
+        "tomoki1207.pdf",
+        "redhat.vscode-yaml"
+    ]
+}

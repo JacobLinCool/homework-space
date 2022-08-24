@@ -1,0 +1,44 @@
+name: Auto Pack
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+jobs:
+    pack:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Get Short SHA
+              id: get_short_sha
+              run: echo "::set-output name=sha_short::$(git rev-parse --short=7 ${{ github.sha }})"
+
+            - name: Setup PNPM
+              uses: pnpm/action-setup@v2.2.2
+              with:
+                  version: latest
+                  run_install: true
+
+            - name: Setup
+              run: make setup
+
+            - name: Test
+              run: make test
+
+            - name: Pack
+              run: make pack
+              env:
+                  NOCHECK: 1
+
+            - name: Release
+              uses: marvinpinto/action-automatic-releases@latest
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  automatic_release_tag: ${{ steps.get_short_sha.outputs.sha_short }}
+                  prerelease: false
+                  files: |
+                      source/**/*.zip
