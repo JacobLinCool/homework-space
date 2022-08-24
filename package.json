@@ -1,0 +1,7 @@
+{
+    "private": true,
+    "name": "homework-space",
+    "devDependencies": {
+        "md-to-pdf": "^5.1.0"
+    }
+}

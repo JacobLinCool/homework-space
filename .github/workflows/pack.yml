@@ -1,0 +1,31 @@
+name: Auto Pack
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+jobs:
+    pack:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Test
+              run: make test
+
+            - name: Pack
+              run: make pack
+              env:
+                  NOCHECK: 1
+
+            - name: Release
+              uses: marvinpinto/action-automatic-releases@latest
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  automatic_release_tag: ${{ github.sha }}
+                  prerelease: false
+                  files: |
+                      source/**/*.zip
