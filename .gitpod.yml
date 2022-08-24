@@ -1,5 +1,5 @@
 tasks:
-    - init: sudo -E "PATH=$PATH" make setup
+    - init: make setup
       command: |
           clear &&
           git remote -v &&
