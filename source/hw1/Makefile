@@ -18,6 +18,8 @@ EXE_FILES := $(filter hw%.c, $(SRC_FILES))
 LIB_FILES := $(filter-out $(EXE_FILES), $(SRC_FILES))
 OBJ_FILES := $(addprefix $(OBJ_DIR), $(LIB_FILES:.c=.o))
 PACK_TARGETS := *.c *.h *.pdf Makefile
+PDF_STYLE = "@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap'); * { font-family: 'Noto Sans TC', sans-serif; }"
+PDF_HIGHLIGHT = monokai
 
 # THE FOLLOWING AREA IS A SACRED REALM.
 # DO NOT TOUCH IF YOU DO NOT KNOW WHAT YOU ARE DOING.
@@ -74,7 +76,7 @@ test: prod prepare-test
 docs: $(MD_FILES:.md=.pdf)
 
 %.pdf: %.md
-	@pnpm md-to-pdf $(CWD)/$<
+	@pnpm md-to-pdf $(CWD)/$< --highlight-style $(PDF_HIGHLIGHT) --css $(PDF_STYLE)
 
 # Compile executable targets
 %: %.c
