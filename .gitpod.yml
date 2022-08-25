@@ -1,5 +1,4 @@
-image:
-  file: .gitpod.Dockerfile
+image: jacoblincool/homework-space
 
 tasks:
   - init: make setup
