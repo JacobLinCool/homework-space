@@ -31,3 +31,7 @@ setup:
 	@echo "Setting up tools ..."
 	@pnpm install > /dev/null
 	@echo "Done."
+
+alpine:
+	@docker info > /dev/null || (echo "Please install Docker first: https://docs.docker.com/get-docker/" && exit 1)
+	@docker run --rm -it -v "$$(pwd):/workspace" -w "/workspace" -u "root" alpinelinux/build-base sh
