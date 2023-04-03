@@ -3,5 +3,6 @@
     "name": "homework-space",
     "devDependencies": {
         "md-to-pdf": "^5.1.0"
-    }
+    },
+    "packageManager": "pnpm@8.1.0"
 }

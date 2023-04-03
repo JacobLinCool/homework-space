@@ -33,6 +33,7 @@
 
 # Node.js modules
 **/node_modules/
+**/.pnpm-store/
 package-lock.json
 
 # Distributions
